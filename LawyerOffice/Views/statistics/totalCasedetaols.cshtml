@@ -1,0 +1,134 @@
+﻿@model LawyerOffice.Models.CasesAndFeeses
+
+@{
+    ViewBag.Title = "تفاصيل حسابات القضايا";
+}
+
+<style>
+    td {
+        text-align: center;
+    }
+
+    th {
+        text-align: center;
+    }
+
+
+    body {
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif, sans-serif;
+    }
+
+    thead {
+        background-color: orange;
+    }
+</style>
+<center>
+    <h2>تفاصيل حسابات القضايا</h2>
+
+    <p>
+        <a href="@Url.Action("PrintCasesDetails","statistics")" class="btn btn-default"><i class=" fas fa-print"></i>  طباعه تقرير </a>
+
+    </p>
+</center>
+
+
+ 
+
+<table class="table table-bordered " id="myTable">
+
+
+    @foreach (var item in Model.CasesX)
+    {
+
+        <tr>
+    
+            <td colspan="5">
+
+
+
+                <div class="card text-center">
+                    <div class="card-header">
+                        @Html.DisplayFor(modelItem => item.numberOfCase)
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            الاتعاب                    @Html.DisplayFor(modelItem => item.money)
+
+                        </h5>
+                        <p class="card-text">
+                            @Html.DisplayFor(modelItem => item.dateofElkaeed) التاريخ
+                        </p>
+                     </div>
+                    <div class="card-footer text-muted">
+                        الاتعاب المدفوعه
+                    </div>
+                </div>
+            </td>
+
+
+        </tr>
+
+
+  
+
+        <tr  class="table-heading bg-primary">
+
+            @*<th>رقم الوصل</th>*@
+            <th style="text-align:center"> تفاصيل  </th>
+            <th style="text-align:center"> التاريخ  </th>
+            <th style="text-align:center">  المبلغ الواصل  </th>
+            <th style="text-align:center">اسم المستلم </th>
+
+
+            <th style="text-align:center">رقم القضيه</th>
+
+
+        </tr>
+        foreach (var items in Model.FeesesX.Where(f => f.NumberOfCase == item.id))
+        {
+
+
+
+
+            <tr style="background-color:white; text-align:center">
+
+                <td>
+
+                    @Html.DisplayFor(modelItem => items.notes)
+
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => items.DateofRevice)
+
+
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => items.recived)
+
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => items.EmployeeName)
+
+
+                </td>
+                <td>
+                    @foreach (var itemX in Model.CasesX.Where(h => h.id == items.NumberOfCase))
+                    {
+                        @Html.DisplayFor(modelItem => itemX.numberOfCase)
+                    }
+
+
+                </td>
+
+            </tr>
+        }
+
+    }
+
+</table>
+<hr />
+
+<a href="@Url.Action("index","statistics")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>

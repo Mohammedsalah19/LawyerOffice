@@ -1,0 +1,88 @@
+﻿@model LawyerOffice.Models.elgalasat
+
+@{
+    ViewBag.Title = "حذف";
+}
+
+
+<h4 class="text-right">متأكد من الحذف؟</h4>
+<div class="text-right" style="direction:rtl">
+    <hr />
+    <dl class="dl-horizontal" >
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfGalsa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfGalsa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfCase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfCase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateOfGalsa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateOfGalsa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RollNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RollNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CourtName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourtName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.eldarea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eldarea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.desicion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.desicion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.orders)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.orders)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="الحذف" class="btn btn-default" />
+
+        </div>
+    }
+</div>
+<a href="@Url.Action("index","cases")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>

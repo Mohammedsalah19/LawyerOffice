@@ -1,0 +1,107 @@
+﻿@model IEnumerable<LawyerOffice.Models.AllPayments>
+
+@{
+    ViewBag.Title = "حسابات الشهر";
+}
+
+<h2 class="text-right">  @ViewBag.month حسابات شهر </h2>
+
+
+@*<center>
+    <div style="border:2px #ff6a00 solid">
+        <h4>
+            اجمالى اتعاب القضايا :  @ViewBag.sumofcases
+        </h4>
+        <h4>
+            اجمالى اتعاب المدفوعه :  @ViewBag.sumoffees
+        </h4>
+        ------------------------------------------
+
+        <h5>  المبلغ المتبقى : @ViewBag.subtractCase</h5>
+
+    </div>
+
+    <hr />
+
+    <div style="border:2px #ff6a00 solid">
+
+        <h4>
+            اجمالى مرتبات الموظفين :  @ViewBag.SumofEmp
+        </h4>
+        <h4>
+            اجمالى المرتبات المدفوعه  :  @ViewBag.SumofSalary
+        </h4>
+
+        ------------------------------------------
+
+        <h5>  المبلغ المتبقى : @ViewBag.subtractSalary</h5>
+    </div>
+</center>
+<br />*@
+
+<center>
+
+
+
+    <div class="card text-center">
+        <div class="card-header" style="font-weight:bold">
+            حسابات قضايا شهر @ViewBag.month
+
+        </div>
+        <div class="card-body">
+
+
+            <p class="card-text">
+                <h4> اجمالى اتعاب القضايا :  @ViewBag.sumofcases </h4>
+            </p>
+
+            <p class="card-text">
+                <h4>  اجمالى اتعاب المدفوعه :  @ViewBag.sumoffees </h4>
+
+            </p>
+            ------------------------------------------
+            <p class="card-text">
+                <h5>  المبلغ المتبقى : @ViewBag.subtractCase</h5>
+            </p>
+
+
+        </div>
+
+    </div>
+ 
+
+    <hr />
+
+
+    <div class="card text-center">
+        <div class="card-header" style="font-weight:bold">
+            حسابات مرتبات شهر  @ViewBag.month
+
+        </div>
+        <div class="card-body">
+
+
+            <p class="card-text">
+                <h4>
+                    اجمالى مرتبات الموظفين :  @ViewBag.SumofEmp
+                </h4>
+            </p>
+
+            <p class="card-text">
+                <h4>     اجمالى المرتبات المدفوعه  :  @ViewBag.SumofSalary </h4>
+
+            </p>
+            ------------------------------------------
+            <p class="card-text">
+                <h5>  المبلغ المتبقى : @ViewBag.subtractSalary</h5>
+            </p>
+
+        </div>
+
+    </div>
+</center>
+
+<a href="@Url.Action("TotalPayments","statistics")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>
+
+
+  

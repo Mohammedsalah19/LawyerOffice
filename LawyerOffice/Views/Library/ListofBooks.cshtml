@@ -1,0 +1,77 @@
+﻿@model IEnumerable<LawyerOffice.Models.Library>
+
+@{
+    ViewBag.Title = "الكتب والمراجع";
+}
+
+
+<style>
+
+    td {
+        text-align: center;
+        font-weight:bold;
+    }
+
+    th {
+        text-align: center;
+
+        color:white;
+    }
+
+
+    body {
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif, sans-serif;
+    }
+ 
+</style>
+<center>
+    <h4>الكتب والمراجع</h4>
+ 
+    <h5>  <a href="@Url.Action("AddBook", "Library")" class="btn btn-default"><i class="fas fa-folder-plus "></i><br /> اضافه كتاب</a></h5>
+    
+</center>
+<br />
+<div class="table-responsive">
+
+    <table class="table table-bordered table-hover table-striped">
+        <thead class="table-heading bg-primary">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.BookName)
+                </th>
+                @*<th>
+                </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.Publisher)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookName)
+                </td>
+                @*<td>
+
+                    <embed src="@Url.Content("~"+item.BookPath)" style="width:600px ;height:400px" />
+
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Publisher)
+                </td>
+
+                <td>
+
+                    <a href="@Url.Action("readBook","Library", new { id = item.id })" class="btn btn-default"><i class="fas fa-book-reader"></i>  القراءه </a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+    <hr />
+    <a href="@Url.Action("index")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>

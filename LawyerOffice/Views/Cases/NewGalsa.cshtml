@@ -1,0 +1,91 @@
+﻿@model LawyerOffice.Models.elgalasat
+
+@{
+    ViewBag.Title = "جلسه جديده";
+}
+
+<h4 class="text-right">اضافه جلسه</h4>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal text-right" style="direction:rtl">
+         <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.NumberOfGalsa, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NumberOfGalsa, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NumberOfGalsa, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.dateOfGalsa, htmlAttributes: new { @class = "control-label col-md-2" })
+            <input type="date" id="dateOfGalsa" name="dateOfGalsa" />*@
+           @Html.LabelFor(model => model.dateOfGalsa, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.dateOfGalsa, new { type = "date" ,AllowHtmlAttribute= new { @class = "form-control col-md-2" } } )
+
+                @*@Html.EditorFor(model => model.dateOfGalsa, new { htmlAttributes = new { @class = "form-control"} })*@
+                @Html.ValidationMessageFor(model => model.dateOfGalsa, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RollNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RollNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RollNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CourtName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("CourtName", ViewBag.Courts as SelectList, htmlAttributes: new { @class = "form-control col-md-4" })
+                @Html.ValidationMessageFor(model => model.CourtName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.eldarea, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.eldarea, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.eldarea, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.desicion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.desicion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.desicion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.orders, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.orders, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.orders, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+ 
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="اضافه" class="btn btn-default" />
+            </div>
+        </div>
+        </div>
+
+ }
+
+    <div>
+        <a href="@Url.Action("index","cases")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>
+    </div>

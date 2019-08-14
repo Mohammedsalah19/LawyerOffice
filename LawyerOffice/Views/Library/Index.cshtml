@@ -1,0 +1,61 @@
+﻿@model LawyerOffice.Models.fees
+
+@{
+    ViewBag.Title = "المكتبه";
+}
+
+<center>
+    <h4>المكتبه</h4>
+</center>
+<style>
+
+    td {
+        text-align: center;
+    }
+
+    th {
+        text-align: center;
+    }
+
+
+    body {
+        font-family: 'Cairo';
+    }
+
+    thead {
+        background-color: orange;
+    }
+
+    .ss {
+        background-color: orange;
+    }
+</style>
+
+<br />
+
+
+<div class="container" style="direction:rtl">
+
+    <div class="row">
+        <div class="col-md-3  s p-2 my-2   " style="height:140px">
+            <div class="bg-primary rounded text-light">
+
+
+                <a href="@Url.Action("ListofBooks", "Library")" class="btn btn-default text-light" style="height:100%; width:100%; font-size:1.8em"><i class="fas fa-book-reader fa-3x"></i><br /> الكتب</a>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3  s p-2 my-2   " style="background-color:;height:140px">
+            <div class="bg-primary rounded text-light">
+
+
+                <a href="@Url.Action("AddBook", "Library")" class="btn btn-default text-light" style="height:100%; width:100%; font-size:1.8em"><i class="fas fa-plus-circle fa-3x"></i><br /> اضافه كتاب</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<br />
+<a href="@Url.Action("index","home")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>

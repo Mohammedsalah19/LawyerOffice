@@ -1,0 +1,19 @@
+﻿  @if (Session["empName"] !=null)
+{
+    using (Html.BeginForm("LogOff", "employees", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+          
+             <li class="nav-item">
+                @Html.ActionLink("" + Session["empName"] , "profile", "employees", routeValues: null, htmlAttributes: new { title = "Manage",@class="nav-link" })
+            </li>
+         <li class="nav-item">
+             @Html.ActionLink(" تسجيل الخروج ", "LogOff", "employees",routeValues:null, htmlAttributes: new { @class = "nav-link" }) 
+         </li>
+      }
+  }
+  else
+  {
+          <li class="nav-item">@Html.ActionLink("تسجيل الدخول", "Login", "Employees", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+ }

@@ -1,0 +1,160 @@
+﻿@model LawyerOffice.Models.SalaryWithEmpAndMonth
+
+@{
+    ViewBag.Title = "المرتب";
+}
+
+<h4 style="" class="text-right">تفاصيل المرتب</h4>
+
+<style>
+
+    td {
+        text-align: center;
+
+        font-weight:bold;
+    }
+
+    th {
+        text-align: center;
+        color:white;
+    }
+
+
+    body {
+        font-family: 'Cairo';
+    }
+
+    thead {
+        background-color: orange;
+    }
+
+    
+</style>
+
+ 
+<Center>
+
+    @using (Html.BeginForm("PayMoney", "statistics"))
+    {
+        <div style="align-content:center" class="">
+
+            <table>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input id="_salary" name="_salary" type="text" class="form-control text-right  text-box single-line" style="width:170px ; height:32px" />
+
+                             </div>
+                        </div>
+
+                     </td>
+                    <td> <label>المرتب</label></td>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <div class="col-md-12"> 
+                                @Html.DropDownList("months", ViewBag.Month as SelectList, "اختار الشهر", htmlAttributes: new { @class = "form-control"})
+                            </div>
+                        </div>
+                    </td>
+                    <td> <label>الشهر </label></td>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <button class="btn btn-default" value="Search" style=" width:150px; background-color:#428bca;">اضافه</button>
+                                </div>
+                            </div>
+                    </td>
+                    <td></td>
+
+                </tr>
+            </table>
+            <h5></h5>
+
+        </div>
+
+    }
+
+</Center>
+<div class="table-responsive">
+
+    <table class="table  table-bordered table-hover table-striped">
+        <thead class="table-heading bg-primary">
+
+            <tr>
+                <th>
+                    تاريخ التسليم
+
+                </th>
+                <th>
+                    شهر
+                </th>
+                <th>
+                    المبلغ
+                </th>
+                <th>
+                    اسم الدافع
+
+                </th>
+                <th>
+                    اسم الموظف
+
+                </th>
+                <th></th>
+            </tr>
+
+        </thead>
+        @foreach (var item in Model.salaryX)
+
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+
+                </td>
+                <td>
+                    @foreach (var items in Model.MonthsX.Where(h => h.id.ToString() == item.month))
+                    {
+                        @Html.DisplayFor(modelItem => items.months)
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.salary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.empSupplyer)
+
+                </td>
+                <td>
+
+                    @foreach (var items in Model.EmpX.Where(h => h.id.ToString() == item.Employee))
+                    {
+                        @Html.DisplayFor(modelItem => items.employeeName)
+                    }
+                </td>
+                <td>
+                    <center>
+                        <a href="@Url.Action("EditPayMoney",new { id=item.id})" class="btn btn-default"><i class="fas fa-user-edit"></i> تعديل</a>
+                    </center>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>
+    <center>
+        <a href="@Url.Action("PrintReport", new { id = ViewBag.empIdForPDF })" class="btn btn-default"><i class="fas fa-print"></i> طباعه التقرير </a>
+
+ 
+    </center>
+
+    <a href="@Url.Action("index")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>

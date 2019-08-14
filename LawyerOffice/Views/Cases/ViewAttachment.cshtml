@@ -1,0 +1,113 @@
+﻿@model LawyerOffice.Models.attachmentAndTypes
+
+@{
+    ViewBag.Title = "عرض المستندات";
+}
+<style>
+
+    td {
+        text-align: center;
+        font-weight:bold;
+    }
+
+    th {
+        text-align: center;
+        color:white;
+    }
+
+
+    body {
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif, sans-serif;
+    }
+
+    thead {
+        background-color: orange;
+    }
+</style>
+
+<center>
+    <h2>مستندات القضيه</h2>
+
+    <h4>
+        <a href="@Url.Action("UploadAttachment","cases", new {id = @ViewBag.caseAttID })" class="btn btn-default"><i class="fas fa-plus"></i>    مستند جديد</a>
+
+        <a href="@Url.Action("printatt","cases", new { id =  @ViewBag.caseAttID})" class="btn btn-default"><i class=" fas fa-print"></i>  طباعه جميع المستندات </a>
+
+
+
+
+
+    </h4>
+</center>
+
+<br />
+<Center>
+
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    <div class="form-group">
+        <div class="col-md-12">
+            <input class="form-control text-right  text-box single-line" id="myInput" name="myInput" placeholder=".... بحث سريع" type="text">
+        </div>
+    </div>
+    <hr />
+ 
+</Center>
+
+
+<div class="table-responsive">
+
+    <table class="table table-bordered table-hover table-striped">
+        <thead class="table-heading bg-primary">
+            <tr>
+                <th> العنوان</th>
+
+                <th> نوع المستند</th>
+                <th> المستند</th>
+
+            </tr>
+        </thead>
+
+
+        @foreach (var item in Model.attX)
+        {
+            <tbody id="myTable">
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.titlte)
+
+
+                    </td>
+                    <td>
+                        @foreach (var items in Model.attTypeX.Where(h => h.Id == item.AttType))
+                        {
+                            @Html.DisplayFor(modelItem => items.AttType)
+                        }
+                    </td>
+                    <td>
+                        @*<img src="E:\Work\Projects\Uptop\LawyerOffice\LawyerOffice\images\1.png" width="250" height="250" />*@
+
+                        <img src="@Url.Content("~"+item.ImagePath)" width="250" height="250" />
+
+                    </td>
+
+                    <td>
+                        <a href="@Url.Action("printOneAtt","cases", new { id =  item.Atachment_id })" class="btn btn-default" style="float:right"><i class="fas fa-print"></i>  طباعه المستند </a>
+
+                    </td>
+                </tr>
+            </tbody>
+        }
+    </table>
+    </div>
+    <br />
+    <a href="@Url.Action("index","cases")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>

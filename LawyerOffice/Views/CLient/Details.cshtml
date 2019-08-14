@@ -1,0 +1,178 @@
+﻿@model LawyerOffice.Models.ClientWithCases
+
+@{
+    ViewBag.Title = "تفاصيل";
+}
+
+<style>
+
+    td{
+
+        font-weight:bold;
+
+    }
+    th{
+
+        color:white;
+    }
+</style>
+<center>
+    <br />
+
+     <row>
+        <div class="card text-center">
+            <div class="card-header">
+                <h4>  تفاصيل عن الموكل </h4>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayName(Model.ClientX.Name) </h5>
+              
+             </div>
+            <div class="card-footer text-muted">
+                <p class="card-text"> @Html.DisplayName(Model.ClientX.Address) // @Html.DisplayName(Model.ClientX.Mobile) // @Html.DisplayName(Model.ClientX.eldiana) </p>
+
+            </div>
+        </div>
+
+
+ 
+
+    </row>
+
+</center>
+
+
+
+
+<div class="table-responsive">
+
+    <table class="table table-bordered table-hover table-striped">
+        <thead class="table-heading bg-primary">
+
+            <tr>
+                <th>
+                    الدائره
+
+                </th>
+                <th>
+                    موضوع القضيه
+                </th>
+                <th>
+                    اسم المحكمه
+
+                </th>
+
+                <th>
+                    عنوان الخصم
+                </th>
+                <th>
+                    اسم الخصم
+
+                </th>
+
+                <th>
+                    تاريخ التوكيل
+                </th>
+                <th>
+                    نوع التوكيل
+
+                </th>
+                <th>
+                    رقم التوكيل
+
+                </th>
+
+                <th>
+                    عنوان الموكل
+
+                </th>
+                <th>
+                    اسم الموكل
+
+                </th>
+
+                <th>
+                    رقم الملف
+
+                </th>
+                <th>
+                    رقم القضيه
+
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.CaseX)
+        {
+            <tr>
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.Eldarea)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.subject)
+                </td>
+                <td>
+                    @foreach (var items in Model.CourtX.Where(h => h.id.ToString() == item.CourtName))
+                    {
+                        @Html.DisplayFor(modelItem => items.CourtName)
+                    }
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddressoFGuility)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nameofGuillty)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.dateofElkaeed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeoOfTawkeel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberoOfTawkeel)
+                </td>
+
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.AddressofClient)
+
+                </td>
+                <td>
+                    @Model.ClientX.Name
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.numberOfFile)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.numberOfCase)
+
+                </td>
+                <td>
+
+
+                    <a href="@Url.Action("Edit","Cases", new { id = item.id })" class="btn btn-default" style="width:100%"><i class="fas fa-user-edit"></i>    تعديل</a>
+
+                    <a href="@Url.Action("Details","Cases", new { id = item.id })" class="btn btn-default" style="width:100%"><i class="fas fa-info-circle"></i>    تفاصيل</a>
+                    <a href="@Url.Action("Delete","Cases", new { id = item.id })" class="btn btn-default" style="width:100%"><i class="fas fa-trash-alt" "></i>    حذف</a>
+
+                    <a href="@Url.Action("Delete","Cases", new { id = item.id })" class="btn btn-default" style="width:100%"><i class="fas fa-folder-plus" "></i>    اضافه جلسه</a>
+
+
+
+
+                </td>
+            </tr>
+
+        }
+    </table>
+
+</div>
+
+<h4>
+    <a href="@Url.Action("index","Client")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>
+</h4>
+

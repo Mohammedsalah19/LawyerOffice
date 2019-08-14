@@ -1,0 +1,100 @@
+﻿@model IEnumerable<LawyerOffice.Models.attachmentType>
+
+@{
+    ViewBag.Title = "المستندات";
+}
+
+
+<style>
+
+    td {
+        text-align: center;
+        font-weight:bold;
+    }
+
+    th {
+        text-align: center;
+        color:white;
+    }
+
+
+    body {
+        font-family: 'Cairo', sans-serif;
+        font-size: 14px;
+    }
+
+    thead {
+        background-color: orange;
+    }
+</style>
+
+<Center>
+    <h4>
+        انواع المستندات
+    </h4>
+    @using (Html.BeginForm("NewattachmentsType", "Mange"))
+    {
+        <div style="align-content:center" class="">
+
+            <h5>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input id="attType" name="attType" class="form-control text-right  text-box single-line" type="text"  placeholder="اسم المستند" />
+
+                     </div>
+                </div>
+ 
+                <button class="btn btn-default" value="Search" style=" width:170px; background-color:#428bca;">اضافه</button>
+            </h5>
+
+        </div>
+
+    }
+
+</Center>
+<div class="table-responsive">
+
+    <table class="table  table-bordered table-hover table-striped">
+        <thead class="table-heading bg-primary">
+
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.AttType)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AttType)
+                </td>
+                <td>
+                    <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-default" style="float:right"><i class="fas fa-trash-alt"></i>    حذف</a>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>
+    <a href="@Url.Action("index")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>
+
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+
+    <script>
+
+        $(function () {
+            var DeleteMessage = '@TempData["AttachmentDelete"]'
+
+             if (DeleteMessage != '') {
+
+                 alertify.success(DeleteMessage);
+                 alertify.confirm("تم الحذف بنجاح..");
+            }
+
+        })
+
+
+    </script>

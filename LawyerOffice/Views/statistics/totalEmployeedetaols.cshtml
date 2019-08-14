@@ -1,0 +1,121 @@
+﻿@model LawyerOffice.Models.SalaryWithEmpAndMonth
+
+@{
+    ViewBag.Title = "سجل رواتب الموظفين";
+}
+
+<style>
+
+    td {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    th {
+        text-align: center;
+        color: white;
+    }
+
+
+    body {
+        font-family: 'Cairo', sans-serif;
+    }
+
+    thead {
+        background-color: orange;
+    }
+</style>
+<Center>
+
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            <input id="myInput" class="form-control text-right" type="text" placeholder="بحث سريع ..">
+
+            @*<input class="form-control text-right  text-box single-line" id="myInput" name="myInput" placeholder=".... بحث سريع" type="text">*@
+        </div>
+    </div>
+    <hr />
+
+
+</Center>
+<center>
+    <h2>سجل رواتب الموظفين</h2>
+
+    <p>
+        <a href="@Url.Action("PrintSalaryDetails")" class="btn btn-default"><i class="fas fa-print"></i>  طباعه التقرير </a>
+
+    </p>
+</center>
+
+<table class="table  table-bordered table-hover" id="myTable">
+    <thead class="table-heading bg-primary">
+        <tr>
+            <th style="text-align:center">تاريخ التسليم</th>
+            <th style="text-align:center"> شهر</th>
+
+            <th style="text-align:center">المبلغ</th>
+            <th style="text-align:center">اسم الدافع		</th>
+
+            <th style="text-align:center">اسم الموظف	</th>
+
+
+        </tr>
+    </thead>
+    @foreach (var item in Model.salaryX)
+    {
+        <tr style="text-align:center">
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+
+            </td>
+            <td>
+                @foreach (var items in Model.MonthsX.Where(h => h.id.ToString() == item.month))
+                {
+                    @Html.DisplayFor(modelItem => items.months)
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.empSupplyer)
+
+
+            
+            </td>
+            <td>
+                @foreach (var items in Model.EmpX.Where(h => h.id.ToString() == item.Employee))
+                {
+                    @Html.DisplayFor(modelItem => items.employeeName)
+                }
+
+            </td>
+
+
+        </tr>
+
+    }
+
+</table>
+<center>
+    الاجمالى
+    <br />
+    -----------------------------------------
+    <br />
+    @Model.salaryX.Sum(h => h.salary)
+
+</center>
+
+<a href="@Url.Action("index","statistics")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>

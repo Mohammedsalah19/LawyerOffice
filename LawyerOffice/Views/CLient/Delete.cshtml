@@ -1,0 +1,51 @@
+﻿@model LawyerOffice.Models.Client
+
+@{
+    ViewBag.Title = "حذف";
+}
+ 
+
+
+<center>
+    <br />
+
+    <h2>تفاصيل عن الموكل</h2>
+    <br />
+    <br />
+
+    <row>
+        <div class="card text-center">
+            <div class="card-header">
+                <h4> @Html.DisplayFor(modelItem => modelItem.Name) </h4>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => modelItem.Name) </h5>
+                <h5 class="card-title">@Html.DisplayFor(modelItem => modelItem.Address) </h5>
+                <h5 class="card-title">@Html.DisplayFor(modelItem => modelItem.Mobile) </h5>
+                <h5 class="card-title">@Html.DisplayFor(modelItem => modelItem.Nationality) </h5>
+                <h5 class="card-title">@Html.DisplayFor(modelItem => modelItem.Notes) </h5>
+
+            </div>
+            <div class="card-footer text-muted">
+ 
+            </div>
+        </div>
+      
+    </row>
+    <br />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+
+            <input type="submit" value="حذف" class="btn btn-default" /> 
+         </div>
+    }
+</center>
+
+<h4>
+    <a href="@Url.Action("index","Client")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>
+</h4>
+
+

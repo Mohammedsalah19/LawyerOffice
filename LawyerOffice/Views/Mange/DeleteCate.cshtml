@@ -1,0 +1,33 @@
+﻿@model LawyerOffice.Models.Expensestypes
+
+@{
+    ViewBag.Title = "حذف صنف";
+}
+
+
+<h3>متأكد من الحذف؟</h3>
+<div class="text-right" style="direction:rtl">
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.catogery)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.catogery)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </div>
+    }
+</div>
+<br />
+<a href="@Url.Action("CatogeryIndexs")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>

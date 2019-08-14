@@ -1,0 +1,231 @@
+﻿@model LawyerOffice.Models.CasesAndGalasat
+
+@{
+    ViewBag.Title = "تفاصيل القضيه";
+}
+<center>
+    <h2>تفاصيل القضيه</h2>
+</center>
+<style>
+
+    td {
+        text-align: center;
+        font-weight:bold;
+        
+    }
+
+    th {
+        text-align: center;
+        color:#ffffff;
+    }
+
+    body {
+        font-family: 'Cairo', sans-serif;
+    }
+</style>
+<div class="table-responsive">
+
+    <table class="table table table-responsive table-bordered table-hover table-striped">
+        <thead class="table-heading bg-primary">
+            <tr>
+                <th>
+                    موضوع القضيه
+
+                </th>
+                <th>
+                    الدائره
+
+                </th>
+                <th>
+                    اسم المحكمه
+
+                </th>
+
+                <th>
+                    عنوان الخصم
+
+                </th>
+
+                <th>
+                    اسم الخصم
+
+                </th>
+
+                <th>
+
+                    تاريخ التوكيل
+                </th>
+                <th>
+                    نوع التوكيل
+
+
+                </th>
+                <th>
+                    رقم التوكيل
+
+                </th>
+
+                <th>
+                    عنوان الموكل
+
+                </th>
+                <th>
+                    رقم الملف
+
+
+                </th>
+
+                <th>
+                    رقم القضيه
+
+                </th>
+
+            </tr>
+        </thead>
+
+
+        @foreach (var item in Model.CasesX)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Eldarea)
+                </td>
+                <td>
+                    @foreach (var items in Model.courtsX.Where(h => h.id.ToString() == item.CourtName))
+                    {
+                        @Html.DisplayFor(modelItem => items.CourtName)
+                    }
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddressofClient)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nameofGuillty)
+                </td>
+
+                <td>
+
+                    @Html.Label(item.dateofElkaeed.ToShortDateString())
+
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeoOfTawkeel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberoOfTawkeel)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddressofClient)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.numberOfFile)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.numberOfCase)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+
+
+
+    <hr />
+    <center>
+        <h3>الجلسات</h3>
+    </center>
+    @foreach (var item in Model.galasatX)
+    {
+    <table class="table  table-bordered table-hover" id="myTable">
+        <thead class="table-heading bg-primary">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => item.orders)
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => item.desicion)
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => item.eldarea)
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => item.CourtName)
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => item.RollNumber)
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => item.dateOfGalsa)
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => item.NumberOfCase)
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => item.NumberOfGalsa)
+
+                </th>
+            </tr>
+        </thead>
+
+        <tr>
+            <td style="">
+
+                @Html.DisplayFor(modelItem => item.orders)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.desicion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.eldarea)
+            </td>
+            <td>
+                @foreach (var items in Model.courtsX.Where(h => h.id.ToString() == item.CourtName))
+                {
+                    @Html.DisplayFor(modelItem => items.CourtName)
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RollNumber)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateOfGalsa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfCase)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfGalsa)
+            </td>
+            <td>
+                <a href="@Url.Action("EditGalsa","cases", new { id = item.id })" class="btn btn-default" style="width:40%;float:right"><i class="fas fa-user-edit"></i>    تعديل</a>
+
+                @*@Html.ActionLink("تعديل", "EditGalsa", new { id = item.id })*@
+                <a href="@Url.Action("DeleteGalsa","cases", new { id = item.id })" class="btn btn-default" style="width:40%;float:right"><i class="fas fa-trash-alt"></i>    حذف</a>
+
+                @*@Html.ActionLink("حذف", "DeleteGalsa", new { id = item.id })*@
+            </td>
+        </tr>
+    </table>
+
+    }
+
+</div>
+
+    <a href="@Url.Action("index","cases")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>

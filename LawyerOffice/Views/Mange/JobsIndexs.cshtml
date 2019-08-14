@@ -1,0 +1,119 @@
+﻿@model IEnumerable<LawyerOffice.Models.Jobs>
+
+@{
+    ViewBag.Title = "الوظائف";
+}
+
+ 
+
+<style>
+
+    td {
+        text-align: center;
+        font-weight:bold;
+    }
+
+    th {
+        text-align: center;
+
+        color:white;
+    }
+
+
+    body {
+        font-family: 'Cairo', sans-serif;
+        font-size: 14px;
+    }
+
+    thead {
+        background-color: orange;
+    }
+</style>
+
+<Center>
+    <h4>سجل الوظائف</h4>
+
+    @using (Html.BeginForm("AddJob", "Mange"))
+    {
+        <div style="align-content:center" class="">
+
+            <table>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input id="_job" name="_job"  class="form-control text-right  text-box single-line" type="text" style="width:170px ; height:32px" />
+
+ 
+                            </div>
+                        </div>
+
+
+                     </td>
+                    <td> <label> اسم الوظيفه</label></td>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        <button class="btn btn-default" value="Search" style=" width:170px; background-color:#428bca;">اضافه</button>
+                    </td>
+                    <td></td>
+
+                </tr>
+            </table>
+
+        </div>
+
+    }
+
+</Center>
+<br />
+<div class="table-responsive">
+
+    <table class="table table-bordered table-hover table-striped">
+        <thead class="table-heading bg-primary">
+
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.jobs)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.jobs)
+                </td>
+                <td>
+                    <a href="@Url.Action("Deletejob", new { id = item.id })" class="btn btn-default" style="float:right"><i class="fas fa-trash-alt"></i>    حذف</a>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>
+    <a href="@Url.Action("index")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>
+
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+
+
+    <script>
+
+        $(function () {
+            var DeleteMessage = '@TempData["JobsDelete"]'
+
+             if (DeleteMessage != '') {
+
+                 alertify.success(DeleteMessage);
+                 alertify.confirm("تم الحذف بنجاح..");
+            }
+
+        })
+
+
+    </script>

@@ -1,0 +1,203 @@
+﻿@model LawyerOffice.Models.ClientWithCases
+
+@{
+    ViewBag.Title = "سجل الموكلين";
+}
+
+<style>
+
+
+    td{
+        font-weight:bold;
+
+    }
+    th{
+
+        color:white;
+    }
+</style>
+<Center>
+    <h4>سجل الموكلين</h4>
+
+
+    <h4>
+        @{
+
+            if (ViewBag.accessAll == true)
+            {
+
+                <a href="@Url.Action("Create","Client")" class="btn btn-default"><i class="fa fa-plus"></i> اضافه موكل جديد </a>
+
+
+            }
+            else
+            {
+
+            }
+        }
+
+    </h4>
+
+
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            <input class="form-control text-right  text-box single-line" id="myInput" name="myInput" placeholder=".... بحث سريع" type="text">
+        </div>
+    </div>
+     <hr />
+
+
+
+
+</Center>
+<div class="table-responsive">
+
+    <table class="table table-bordered table-hover table-striped">
+        <thead class="table-heading bg-primary">
+
+
+            <tr>
+                <th style="text-align:center">
+                    البريد الاكترونى
+                </th>
+                <th style="text-align:center">
+                    ملاحظات
+
+                </th>
+                <th style="text-align:center">
+                    اسم المحامى
+
+                </th>
+                <th style="text-align:center">
+                    الديانه
+                </th>
+                <th style="text-align:center">
+                    رقم التليفون
+                </th>
+                <th style="text-align:center">
+                    العنوان
+                </th>
+                <th style="text-align:center">
+                    الجنسيه
+
+                </th>
+                <th style="text-align:center">
+                    أسم الموكل
+
+
+                </th>
+            </tr>
+        </thead>
+
+        <tbody id="myTable">
+
+
+            @foreach (var item in Model.ClientXs)
+            {
+                <tr style="text-align:center">
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Notes)
+                    </td>
+                    <td>
+                        @foreach (var items in Model.empX.Where(h => h.id == item.employeeName))
+                        {
+                            @Html.DisplayFor(modelItem => items.employeeName)
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.eldiana)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mobile)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nationality)
+
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.Name)
+
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit","client", new { id = item.ID })" class="btn btn-default"><i class="fas fa-user-edit"></i>    تعديل</a>
+
+                        <a href="@Url.Action("Details","client", new { id = item.ID })" class="btn btn-default"><i class="fas fa-info-circle"></i>    تفاصيل</a>
+
+
+                        <a href="@Url.Action("Delete","client", new { id = item.ID })" class="btn btn-default"><i class="fas fa-trash-alt"></i>    حذف</a>
+
+                        <a href="@Url.Action("NewCase","client", new { id = item.ID })" class="btn btn-default"><i class="fas fa-folder-plus"></i>    أضافه قضيه</a>
+
+
+
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
+<br />
+<a href="@Url.Action("index","home")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>
+
+
+<script>
+
+        $(function () {
+
+            var successMessage = '@TempData["ClientAdded"]'
+            var EditeMssage = '@TempData["ClientEdit"]'
+            var DeleteMessage = '@TempData["ClientDelete"]'
+            var CaseAdded = '@TempData["CaseAdded"]'
+
+             if (successMessage != '') {
+
+                alertify.success(successMessage);
+            }
+           else if (EditeMssage != '') {
+
+                alertify.success(EditeMssage);
+            }
+
+
+            else if (CaseAdded != '') {
+
+                alertify.success(CaseAdded);
+            }
+            else if (DeleteMessage != '') {
+
+                 alertify.success(DeleteMessage);
+                 alertify.confirm("تم الحذف بنجاح..");
+            }
+
+        })
+
+
+
+
+</script>
+
+

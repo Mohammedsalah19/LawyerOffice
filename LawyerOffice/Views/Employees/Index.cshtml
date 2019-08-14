@@ -1,0 +1,170 @@
+﻿@model  LawyerOffice.Models.EmpOfficeJob
+
+@{
+    ViewBag.Title = "الموظفين";
+}
+
+<style>
+
+    td {
+        text-align: center;
+        font-weight:bold;
+    }
+
+    th {
+        text-align: center;
+        color:white;
+    }
+
+
+    body {
+        font-family: 'Cairo', sans-serif;
+    }
+
+    thead {
+        background-color: orange;
+    }
+</style>
+<center>
+    <h2>الموظفين</h2>
+
+    <p>
+        <a href="@Url.Action("newEmployee")" class="btn btn-default"><i class="fas fa-user-plus"></i>    موظف جديد</a>
+
+    </p>
+</center>
+<div class="table-responsive">
+
+    <table class="table   table-bordered table-hover table-striped">
+        <thead class="table-heading bg-primary">
+
+
+            <tr>
+                <th style="text-align:center">
+                    الرقم السرى
+                </th>
+                <th style="text-align:center">
+                    المكتب
+                </th>
+                <th style="text-align:center">
+                    المرتب
+                </th>
+                <th style="text-align:center">
+                    الوظيفه
+                </th>
+                <th style="text-align:center">
+                    رقم التليفون
+                </th>
+                <th style="text-align:center">
+                    عنوان الموظف
+
+
+                </th>
+
+                <th>
+                    اسم الموظف
+                </th>
+
+            </tr>
+        </thead>
+
+
+        @foreach (var item in Model.Empx)
+        {
+            <tr>
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.Paswword)
+
+                </td>
+                <td style="text-align:center">
+                    @foreach (var items in Model.OfficeX.Where(h => h.Id.ToString() == item.OfficeName))
+                    {
+                        @Html.DisplayFor(modelItem => items.OfficeName)
+                    }
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.Salary)
+                </td>
+                <td style="text-align:center">
+                    @foreach (var items in Model.JobX.Where(h => h.id.ToString() == item.jobs))
+                    {
+                        @Html.DisplayFor(modelItem => items.jobs)
+                    }
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.phone)
+
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.Address)
+
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.employeeName)
+
+                </td>
+                <td style="text-align:center">
+
+                    <a href="@Url.Action("Edit", new { id = item.id })" class="btn btn-default"><i class="fas fa-user-edit"></i>    تعديل</a>
+
+                    <a href="@Url.Action("Delete", new { id = item.id })" class="btn btn-default"><i class="fas fa-trash-alt"></i>    حذف</a>
+
+
+                    @foreach (var items in Model.hcaX.Where(h => h.employeeID == item.id))
+                    {
+                        <a href="@Url.Action("Privilage", new { id = items.ID })" class="btn btn-default"><i class="fas fa-check-circle"></i>    تعديل الصلاحيات</a>
+
+
+                    }
+
+
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<br />
+<a href="@Url.Action("index","home")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>
+
+
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+
+
+<script>
+
+        $(function () {
+
+             var EditeEmp = '@TempData["EditEmp"]'
+            var DeleteEmp = '@TempData["DeleteEmp"]'
+           var EditePervilage = '@TempData["editePrrivelage"]'
+          var addEmp = '@TempData["AddEmp"]'
+
+          if (addEmp != '') {
+
+              alertify.success(addEmp);
+          }
+
+           if (EditeEmp != '') {
+
+               alertify.success(EditeEmp);
+            }
+          else if (EditePervilage != '') {
+
+              alertify.success(EditePervilage);
+            }
+
+
+
+          else if (DeleteEmp != '') {
+
+              alertify.success(DeleteEmp);
+                 alertify.confirm("تم الحذف بنجاح..");
+            }
+
+        })
+
+</script>
+
+

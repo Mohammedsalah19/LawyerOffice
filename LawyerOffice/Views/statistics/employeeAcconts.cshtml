@@ -1,0 +1,103 @@
+﻿@model  LawyerOffice.Models.SalaryWithEmpAndMonth
+
+@{
+    ViewBag.Title = "حسابات الموظفين";
+}
+<style>
+
+    td {
+        text-align: center;
+        font-weight:bold;
+    }
+
+    th {
+        text-align: center;
+        color:white;
+    }
+
+
+    body {
+        font-family: 'Cairo';
+    }
+
+    thead {
+        background-color: orange;
+    }
+
+   
+</style>
+<center>
+    <h2>حسابات الموظفين</h2>
+</center>
+<div class="table-responsive">
+
+    <table class="table  table-bordered table-hover table-striped">
+        <thead class="table-heading bg-primary">
+
+            <tr>
+                <th>
+                    المكتب
+                </th>
+                <th>
+
+                    المرتب
+                </th>
+                <th>
+                    الوظيفه
+                </th>
+                <th>
+                    رقم التليفون
+                </th>
+                <th>
+                    العنوان
+                </th>
+                <th>
+                    اسم الموظف
+                </th>
+
+            </tr>
+        </thead>
+        @foreach (var item in Model.EmpX)
+        {
+            <tr>
+                <td>
+                    @foreach (var items in Model.officeX.Where(h => h.Id.ToString() == item.OfficeName))
+                    {
+                        @Html.DisplayFor(modelItem => items.OfficeName)
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salary)
+                </td>
+                <td>
+                    @foreach (var items in Model.jobx.Where(h => h.id.ToString() == item.jobs))
+                    {
+                        @Html.DisplayFor(modelItem => items.jobs)
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.phone)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.employeeName)
+
+
+                </td>
+                <td>
+                    <a href="@Url.Action("Salary","statistics",new {id = item.id  })" class="btn btn-default"><i class="fas fa-info-circle"></i> تفاصيل المرتب</a>
+
+                </td>
+
+            </tr>
+        }
+
+    </table>
+    </div>
+    <a href="@Url.Action("index","statistics")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>
+
+

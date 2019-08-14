@@ -1,0 +1,88 @@
+﻿@model LawyerOffice.Models.HowCanAcess
+
+@{
+    ViewBag.Title = "صلاحيات الموظف";
+}
+
+<h4  class="text-right">صلاحيات الموظف</h4>
+
+@ViewBag.EmpIDs
+@ViewBag.nn
+@using (Html.BeginForm())
+{
+        @Html.AntiForgeryToken()
+
+<div class="text-right" style="direction:rtl">
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+
+            @Html.HiddenFor(model => model.ID)
+            <div class="checkbox">
+                <label>
+
+                    <input type="checkbox" id="Cases" checked="@Model.Cases" name="Cases" value="True"> القضايا
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="Clients" checked="@Model.Clients" name="Clients" value="True"> الموكلين
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="Employee" checked="@Model.Employee" name="Employee" value="True"> الموظفين
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="Agenda" name="Agenda" checked="@Model.Agenda" value="True"> الاجنده
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="library" name="library" checked="@Model.library" value="True"> المكتبه
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="Staticis" name="Staticis" checked="@Model.Staticis" value="True"> الاحصائيات
+                </label>
+            </div>
+            @*<div class="checkbox">
+                    <label>
+                        <input type="checkbox" id="money" name="money" checked="@Model.money" value="True"> الحسابات
+                    </label>
+                </div>*@
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="Setting" name="Setting" checked="@Model.Setting" value="True">  الاعدادات
+
+                </label>
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="AccessAll" name="AccessAll" checked="@Model.AccessAll" value="True">  السماح بالكل
+
+                </label>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="حفظ" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+ }
+
+        <div>
+            <a href="@Url.Action("index","Employees")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>
+        </div>

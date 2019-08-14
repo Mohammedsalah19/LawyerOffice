@@ -1,0 +1,55 @@
+﻿@model LawyerOffice.Models.Info
+
+@{
+    ViewBag.Title = "حذف المعلومات";
+}
+
+
+<h4 class="text-right">متأكد من حذف المعلومات؟</h4>
+<div>
+     <hr />
+    <dl class="dl-horizontal text-right" style="direction:rtl">
+        <dt>
+            @Html.DisplayNameFor(model => model.PlaceName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlaceName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Img)
+        </dt>
+
+        <dd>
+            <img src="~/@Url.Content(Model.Img)" width="100px" height="100px" />
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color text-right" style="direction:rtl">
+            <input type="submit" value="حذف" class="btn btn-default" />
+        </div>
+    }
+</div>
+<a href="@Url.Action("info")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>

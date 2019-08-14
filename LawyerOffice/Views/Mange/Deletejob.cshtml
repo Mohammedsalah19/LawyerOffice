@@ -1,0 +1,33 @@
+﻿@model LawyerOffice.Models.Jobs
+
+@{
+    ViewBag.Title = "حذف الوظيفه";
+}
+
+ 
+<h3> هل انت متأكد من الحذف؟</h3>
+<div class="text-right" style="direction:rtl">
+    <hr />
+    <dl class="dl-horizontal text-right" style="direction:rtl">
+        <dt>
+            @Html.DisplayNameFor(model => model.jobs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jobs)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-danger" />
+        </div>
+    }
+</div>
+<br />
+
+<a href="@Url.Action("index")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>

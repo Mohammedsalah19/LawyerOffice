@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "اب توب";
+}
+
+<h2 class="text-light">اب توب</h2>
+
+<br />
+<br />
+
+
+<style>
+
+    td {
+        text-align: center;
+    }
+
+    th {
+        text-align: center;
+    }
+
+
+    body {
+        font-family: 'Cairo',sans-serif;
+    }
+
+    thead {
+        background-color: orange;
+    }
+
+    .ss {
+        background-color: orange;
+    }
+
+    a {
+        text-align: center;
+    }
+</style>
+
+<div class="container" style="direction:rtl">
+
+    <div class="row">
+        <div class="col-md-3 p-2 my-2" style="height:140px;">
+            <div class="bg-primary rounded text-light">
+
+                <a href="@Url.Action("delletall","Mange")" class="btn btn-default  text-light" style="height:100%; width:100%; font-size:1.4em"><i class="fas fa-database fa-4x"></i><br /> تصفيه الداتا بيز</a>
+            </div>
+        </div>
+        
+
+        <div class="col-md-3 p-2 my-2" style="background-color:;height:140px;">
+            <div class="bg-primary rounded text-light">
+
+                <a href="@Url.Action("info","Mange")" class="btn btn-default  text-light" style="height:100%; width:100%; font-size:1.3em"><i class="fas fa-info-circle fa-4x"></i><br />معلومات المكان  </a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<a href="@Url.Action("index","home")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>
+
+

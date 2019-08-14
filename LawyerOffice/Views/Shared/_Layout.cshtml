@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/alertifyjs/alertify.min.css" rel="stylesheet" />
+    <link href="~/Content/alertifyjs/themes/default.min.css" rel="stylesheet" />
+
+
+    <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
+    <!-- Fontawesome library -->
+    <script src="~/Content/all.min.js"></script>
+    <script src="~/Content/fontawesome.js"></script>
+    <style>
+        html,
+        body {
+            margin: 0px;
+            padding: 0px;
+            font-family: 'Cairo', sans-serif;
+            background-image: url('/download.png');
+            /*background-image: url('../../download.png');*/
+         }
+
+        p, h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cairo', sans-serif;
+        }
+        /*table,thead,tbody,tfoot{
+            width:100%;
+        }*/
+        #particles-js {
+            height: 100%;
+            z-index: 0;
+            background-color:;
+            background-size: cover;
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+        }
+    </style>
+
+
+
+</head>
+<body>
+
+
+
+    <nav class="navbar navbar-expand-md navbar-light bg-light font-weight-bold"
+         style="transition: all 1s ease-out;direction: rtl;">
+        <div class="container">
+            
+        @Html.ActionLink("براءة", "Index", "Home", new { area = "" }, new { @class = "navbar-brand float-right" })
+            <button class="navbar-toggler navbar-toggler-right" id="menubutton" type="button" data-toggle="collapse"
+                    data-target="#navbarDarkSupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-center  justify-content-end" id="navbarDarkSupportedContent">
+                <form class="form-inline my-2 my-lg-0">
+                    <ul class="navbar-nav text-right">
+                      
+                    @Html.Partial("_LoginPartial")
+
+                    </ul>
+
+
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+
+    <div class="container body-content py-5" style="position:relative">
+        @RenderBody()
+        <hr />
+
+
+    </div>
+
+
+
+    <div style="background-color:#;color:# ;position:relative;opacity:.9;border-top:2px solid #0094ff" class="bg-light text-dark font-weight-bold">
+        <div class="container text-right">
+            <div class=" row py-5">
+
+
+                <div class="col-md-3  text-center">
+                    <a href="https://WWW.UPTOP-EG.COM">   <img class="d-block mx-auto img-fluid" src="/uptop.png" style="height:150px;position:relative;" alt="Second slide"></a>
+
+                    <p class="footer-company-name">UP-TOP - For Media and Programming Solutions &copy; 2019</p>
+                </div>
+
+
+
+                <div class="col-md-9">
+                    <div class="row text-right">
+                        <div class="col-12 py-2">
+                            <p class="d-inline ">  كفر الشيخ - دوران النصر - بجوار فرع فودافون - أعلى المصريه للادويه - الور الثانى علوى  <i class="fas fa-map-marker mx-1  fa-lg"></i></p>
+                        </div>
+                        <div class="col-12 py-2">
+                            <p class="d-inline "> 01013004509 - 01009136830 - 01111468462 <i class="fas fa-phone mx-1 fa-lg"></i></p>
+                        </div>
+                        <div class="col-12 py-2">
+                            <p class="d-inline "> <a href="mailto:Support@UPTOP-EG.COM">Support@UPTOP-EG.COM</a> <i class="fas fa-envelope fa-lg mx-1"></i></p>
+                         </div>
+                    </div>
+
+
+                </div>
+
+                @*<div class="col-md-4 ">
+
+                    <p class="footer-company-about">
+                        <h3>عن المشروع</h3><br>
+                        توفر الجامعة خدمة النقل الآمن للطلبات و ذلك عن طريقة  التسجيل عبر الموقع الاكتروني و تأكيد التسجسل و الدفع عبر مواقعنا بالكليت
+                    </p>
+
+                    <div class=" text-white">
+
+                        <a href="https://www.facebook.com/uptopeg" class="px-2"><i class="fab fa-3x fa-facebook text-white"></i></a>
+                        @*<a href="#" class="px-2"><i class="fab fa-3x fa-twitter text-white"></i></a>
+                        <a href="#" class="px-2"><i class="fab fa-3x fa-linkedin text-white"></i></a>
+                        <a href="#" class="px-2"><i class="fab fa-3x fa-github text-white"></i></a>
+
+                    </div>
+                </div>*@
+
+            </div>
+        </div>
+    </div>
+
+    <div style="background-color:#0094ff;height: 10px;position:relative;">
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/alertify.min.js"></script>
+    @RenderSection("scripts", required: false)
+
+
+
+</body>
+</html>

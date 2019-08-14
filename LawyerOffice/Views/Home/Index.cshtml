@@ -1,0 +1,212 @@
+﻿@{
+    ViewBag.Title = "الصفحه الرئيسيه";
+}
+
+ 
+<style>
+
+    td {
+        text-align: center;
+    }
+
+    th {
+        text-align: center;
+    }
+
+
+    body {
+        font-family: 'Cairo';
+    }
+
+    thead {
+        background-color: orange;
+    }
+   
+    </style>    
+
+<br />
+<br />
+<div class="container">
+
+    <div class="row" style="direction:rtl;">
+        <div class="col-md-3   p-2 my-2" style="height:140px;">
+            <div class="bg-primary rounded text-light">
+
+                @{
+
+                    if (ViewBag.Client == true)
+                    {
+                        <a href="@Url.Action("index", "client")" class="btn btn-default  text-light" style="height:100%; width:100%; font-size:1.8em"><i class="fas fa-users fa-3x"></i><br /> الموكلين</a>
+
+                    }
+
+                    else
+                    {
+
+                        <a disabled href="@Url.Action("index", "client")" class="btn btn-default  text-dark" style="height:100%; width:100%; font-size:1.8em"><i class="fas fa-users fa-3x"></i><br /> الموكلين</a>
+
+
+                    }
+
+                }
+
+            </div>
+        </div>
+
+        <div class="col-md-3  s p-2 my-2    " style="height:140px;">
+            <div class="bg-primary rounded text-light">
+
+                @{
+
+                    if (ViewBag.Cases == true)
+                    {
+                        <a href="@Url.Action("index", "cases")" class="btn btn-default  text-light" style="height:100%; width:100%; font-size:1.8em"><i class="fas fa-folder-open fa-3x"></i><br /> القضايا</a>
+
+
+                    }
+
+                    else
+                    {
+                        <a disabled href="@Url.Action("index", "cases")" class="btn btn-default  text-dark" style="height:100%;width:100%;font-size:1.8em"><i class="fas fa-folder-open fa-3x"></i><br /> القضايا</a>
+
+
+                    }
+                }
+
+            </div>
+        </div>
+        <div class="col-md-3   p-2 my-2  " style="height:140px;">
+            <div class="bg-primary rounded text-light">
+
+                @{
+
+                    if (ViewBag.agend == true)
+                    {
+
+                        <a href="@Url.Action("index", "agenda")" class="btn btn-default  text-light" style="height:100%; width:100%; font-size:1.8em"><i class="far fa-calendar-alt fa-3x"></i><br /> الاجنده</a>
+
+
+                    }
+                    else
+                    {
+                        <a disabled href="@Url.Action("index", "agenda")" class="btn btn-default  text-dark" style="height:100%; width:100%; font-size:1.8em"><i class="far fa-calendar-alt fa-3x"></i><br /> الاجنده</a>
+
+                    }
+                }
+
+            </div>
+        </div>
+        <div class="col-md-3   p-2 my-2  " style="height:140px;">
+            <div class="bg-primary rounded text-light">
+                @{
+
+                    if (ViewBag.library == true)
+                    {
+
+                        <a href="@Url.Action("index", "Library")" class="btn btn-default  text-light" style="height:100%; width:100%; font-size:1.8em"><i class="fas fa-book fa-3x"></i><br /> المكتبه</a>
+
+
+                    }
+                    else
+                    {
+                        <a disabled href="@Url.Action("index", "Library")" class="btn btn-default  text-dark" style="height:100%; width:100%; font-size:1.8em"><i class="fas fa-book fa-3x"></i><br /> المكتبه</a>
+
+                    }
+                }
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3   p-2 my-2  " style="height:140px;">
+            <div class="bg-primary rounded text-light">
+
+                @{
+
+                    if (ViewBag.users == true)
+                    {
+
+                        <a href="@Url.Action("index", "employees")" class="btn btn-default  text-light" style="height:100%; width:100%; font-size:1.5em"><i class="fas fa-address-card fa-3x"></i><br /> المستخدمين</a>
+
+
+                    }
+                    else
+                    {
+                        <a disabled href="@Url.Action("index", "employees")" class="btn btn-default  text-dark" style="height:100%; width:100%; font-size:1.5em"><i class="fas fa-address-card fa-3x"></i><br /> المستخدمين</a>
+
+
+                    }
+                }
+
+            </div>
+        </div>
+
+        <div class="col-md-3   p-2 my-2  " style="height:140px;">
+            <div class="bg-primary rounded text-light">
+                @{
+
+                    if (ViewBag.statics == true)
+                    {
+                        <a href="@Url.Action("index", "statistics")" class="btn btn-default  text-light" style="height:100%; width:100%; font-size:1.5em"><i class="fas fa-file-pdf fa-3x"></i><br /> التقارير و الحسابات</a>
+
+                    }
+                    else
+                    {
+                        <a disabled href="@Url.Action("index", "statistics")" class="btn btn-default  text-dark" style="height:100%; width:100%; font-size:1.5em"><i class="fas fa-file-pdf fa-3x"></i><br /> التقارير و الحسابات</a>
+
+                    }
+                }
+
+            </div>
+        </div>
+        <div class="col-md-3   p-2 my-2  " style="height:140px;">
+            <div class="bg-primary rounded text-light">
+
+                @{
+
+                    if (ViewBag.Setting == true)
+                    {
+
+                        <a href="@Url.Action("index","Mange")" class="btn btn-default  text-light" style="height:100%; width:100%; font-size:1.5em"><i class="fas fa-cogs fa-3x"></i><br /> الاعدادات </a>
+
+
+                    }
+                    else
+                    {
+                        <a disabled href="@Url.Action("index","Mange")" class="btn btn-default  text-dark" style="height:100%; width:100%; font-size:1.5em"><i class="fas fa-cogs fa-3x"></i><br /> الاعدادات </a>
+
+
+                    }
+                }
+
+            </div>
+        </div>
+
+
+        @*<div class="col-md-3   p-2 my-2  " style="height:140px;">
+            <div class="bg-primary rounded text-light">
+
+                @{
+
+                    if (ViewBag.uptop == true)
+                    {
+
+                        <a href="@Url.Action("uptop","Mange")" class="btn btn-default  text-light" style="height:100%; width:100%; font-size:1.5em"><i class="fas fa-tools fa-3x"></i><br /> اب توب </a>
+
+
+                    }
+                    else
+                    {
+                        <a disabled href="@Url.Action("uptop","Mange")" class="btn btn-default  text-dark" style="height:100%; width:100%; font-size:1.5em"><i class="fas fa-tools fa-3x"></i><br /> اب توب </a>
+
+
+                    }
+                }
+
+            </div>
+        </div>*@
+
+    </div>
+</div>
+
+ 

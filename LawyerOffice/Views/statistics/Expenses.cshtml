@@ -1,0 +1,197 @@
+﻿@model  LawyerOffice.Models.ExpensesAndTypes
+
+@{
+    ViewBag.Title = "المصروفات";
+}
+
+<h4 class="text-right">المصروفات</h4>
+
+
+<style>
+
+    td {
+        text-align: center;
+        font-weight:bold;
+    }
+
+    th {
+        text-align: center;
+        color:white;
+    }
+
+
+    body {
+        font-family: 'Cairo', sans-serif;
+    }
+
+    thead {
+        background-color: orange;
+    }
+</style>
+
+
+<Center>
+
+    @using (Html.BeginForm("AddExpenses", "statistics"))
+    {
+        <div style="align-content:center" class="">
+
+            <table>
+                <tr>
+                    <td>
+                        @Html.DropDownList("catogery", ViewBag.cat as SelectList, "اختار الصنف", htmlAttributes: new { @class = "form-control" })
+
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DropDownList("OfficeName", ViewBag.office as SelectList, "اختار المكتب", htmlAttributes: new { @class = "form-control" })
+
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <td>
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input id="values"  class="form-control text-right  text-box single-line" name="values" type="number"  placeholder="القيمه" required />
+
+                            </div>
+                        </div>
+
+
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <td>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input id="Comment" class="form-control text-right  text-box single-line" name="Comment" type="text" placeholder="ملاحظه" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="btn btn-default" value="Search" style=" width:100px; background-color:#428bca;">اضافه</button>
+                    </td>
+
+                </tr>
+
+
+            </table>
+
+        </div>
+
+    }
+
+    <br />
+
+         <a href="@Url.Action("PrintExpenses")" class="btn btn-default"><i class=" fas fa-print"></i>  طباعه التقرير  </a>
+ 
+
+</Center>
+
+<div class="table-responsive">
+
+    <table class="table table-bordered table-hover table-striped">
+        <thead class="table-heading bg-primary">
+
+            <tr>
+                <th>
+                    ملاحظات
+
+                </th>
+                <th>
+                    التاريخ
+
+
+                </th>
+                <th>
+                    المكتب
+                </th>
+                <th>
+                    القيمه
+                </th>
+                <th>
+                    الصنف
+
+                </th>
+
+            </tr>
+        </thead>
+        @foreach (var item in Model.expenX)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+
+
+
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+
+                </td>
+                <td>
+
+                    @foreach (var items in Model.officeX.Where(h => h.Id.ToString() == item.office))
+                    {
+                        @Html.DisplayFor(modelItem => items.OfficeName)
+                    }
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.values)
+
+                </td>
+                <td>
+                    @foreach (var items in Model.expenTypeX.Where(h => h.id.ToString() == item.Expensestype))
+                    {
+                        @Html.DisplayFor(modelItem => items.catogery)
+                    }
+                </td>
+
+                <td>
+                    <a href="@Url.Action("EditExpenses","statistics", new { id = item.id })" class="btn btn-default" style="float:right"><i class="fas fa-user-edit"></i>    تعديل</a>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+    <center>
+        <h4>   الاجمالى :  @ViewBag.SumofExpenses</h4>
+    </center>
+
+    </div>
+    <br />
+    <a href="@Url.Action("index")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>
+
+
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+
+    <script>
+
+        $(function () {
+
+             var EditeMssage = '@TempData["EpenEdit"]'
+        if (EditeMssage != '') {
+
+                alertify.success(EditeMssage);
+            }
+
+
+
+        })
+
+
+    </script>
+

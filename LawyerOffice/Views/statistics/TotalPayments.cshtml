@@ -1,0 +1,109 @@
+﻿@model LawyerOffice.Models.AllPayments
+
+@{
+    ViewBag.Title = "اجمالى الحسابات";
+}
+
+<h4 class="text-right">اجمالى الحسابات</h4>
+
+<Center>
+
+    @using (Html.BeginForm("SumMoneyByMonth", "statistics"))
+    {
+        <div style="align-content:center" class="">
+
+            <table>
+
+                <tr>
+
+
+                     @Html.DropDownList("months", ViewBag.Month as SelectList, "اختار الشهر", htmlAttributes: new { @class = "form-control" })
+
+
+                    <td>
+                        <button class="btn btn-default" value="Search" style=" width:150px; background-color:#428bca;">بحث</button>
+                    </td>
+                 </tr>
+
+            </table>
+
+        </div>
+
+    }
+
+</Center>
+<br />
+<center>
+
+
+
+    <div class="card text-center">
+        <div class="card-header" style="font-weight:bold">
+            حسابات جميع القضايا
+
+        </div>
+        <div class="card-body">
+
+
+            <p class="card-text">
+                <h4> اجمالى اتعاب القضايا :  @ViewBag.sumofcases </h4>
+            </p>
+
+            <p class="card-text">
+                <h4>  اجمالى اتعاب المدفوعه :  @ViewBag.sumoffees </h4>
+
+            </p>
+            ------------------------------------------
+            <p class="card-text">
+                <h5>  المبلغ المتبقى : @ViewBag.subtractCase</h5>
+            </p>
+
+            <p class="card-text">
+                <a href="@Url.Action("totalCasedetaols","statistics")" class="btn btn-default" style="margin:5px"><i class="fas fa-info-circle"></i> تفاصيل </a>
+            </p>
+
+
+        </div>
+
+    </div>
+
+ 
+    <hr />
+
+
+    <div class="card text-center">
+        <div class="card-header" style="font-weight:bold">
+            حسابات جميع المرتبات
+
+        </div>
+        <div class="card-body">
+
+
+            <p class="card-text">
+                <h4>
+                    اجمالى مرتبات الموظفين :  @ViewBag.SumofEmp
+                </h4>
+            </p>
+
+            <p class="card-text">
+                <h4>     اجمالى المرتبات المدفوعه  :  @ViewBag.SumofSalary </h4>
+
+            </p>
+            ------------------------------------------
+            <p class="card-text">
+                <h5>  المبلغ المتبقى : @ViewBag.subtractSalary</h5>
+            </p>
+
+            <p class="card-text">
+                <a href="@Url.Action("totalEmployeedetaols","statistics")" class="btn btn-default" style="margin:5px"><i class="fas fa-info-circle"></i> تفاصيل </a>
+            </p>
+
+
+        </div>
+
+    </div>
+
+ 
+</center>
+<br />
+<a href="@Url.Action("index","statistics")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<LawyerOffice.Models.Tables>
+
+@{
+ 
+                ViewBag.Title = "حذف الداتا بيز";
+}
+
+<style>
+
+    td {
+        text-align: center;
+        font-weight:bold;
+    }
+
+    th {
+        text-align: center;
+        color:white;
+    }
+
+
+    body {
+        font-family: 'Cairo';
+    }
+
+    thead {
+        background-color: orange;
+    }
+
+    .ss {
+        background-color: orange;
+    }
+
+    </style>
+<h4 class="text-right">حذف الداتا بيز</h4>
+
+<div class="table-responsive">
+
+    <table class="table  table-bordered table-hover table-striped">
+        <thead class="table-heading bg-primary">
+
+            <tr>
+                <th>
+                    اسم الجدول
+
+                </th>
+                <th>
+                    حذف
+                </th>
+             </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+
+                    <td>
+
+                        <a href="@Url.Action(@item.values,"mange")" class="btn btn-default"><i class="fas fa-trash-alt"></i> حذف</a>
+                    </td>
+                </tr>
+            }
+
+    </table>
+    </div>
+    <br />
+    <a href="@Url.Action("uptop","mange")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>

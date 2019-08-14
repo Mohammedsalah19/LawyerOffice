@@ -1,0 +1,208 @@
+﻿@model LawyerOffice.Models.CasesCourtsEmployees
+
+@{
+    ViewBag.Title = "القضايا";
+}
+
+<h2 class="text-right" style="float:right">كل القضايا</h2>
+<br /><br /><br />
+
+<style>
+
+    td {
+        text-align: center;
+        font-weight:bold;
+    }
+
+    th {
+        text-align: center;
+        color:white;
+    }
+
+
+    body {
+        font-family: 'Cairo', sans-serif;
+    }
+
+    
+</style>
+
+<Center>
+
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    <div class="form-group">
+        <div class="col-md-12">
+            <input class="form-control text-right  text-box single-line" id="myInput" name="myInput"placeholder=".... بحث سريع" type="text">
+         </div>
+    </div>
+    <hr />
+   @*<div class="form-group">
+       <div class="col-md-12">
+           <input id="" class="from-control single-line" type="text" >
+       </div>
+    </div>*@
+    <h4>بحث عن القضايا</h4>
+
+
+
+
+</Center>
+<br />
+<div class="table-responsive ">
+
+    <table class="table table-bordered table-hover">
+        <thead class="table-heading bg-primary">
+            <tr>
+ 
+                <th>
+                    اسم المحامى
+
+                </th>
+
+
+                <th>
+                    موضوع القضيه
+
+                </th>
+ 
+                </th>
+                <th>
+                    تاريخ التوكيل
+
+                </th>
+         
+               
+                <th>
+                    اسم الموكل
+
+                </th>
+                <th>
+                    رقم الملف
+
+                </th>
+                <th>
+                    رقم القضيه
+
+                </th>
+            </tr>
+        </thead>
+
+        <tbody id="myTable">
+            @foreach (var item in Model.casesX)
+            {
+            <tr>
+
+                <td>
+                    @foreach (var items in Model.EmpX.Where(h => h.id.ToString() == item.employeeName))
+                    {
+                        @Html.DisplayFor(modelItem => items.employeeName)
+                    }
+                    @*@Html.DisplayFor(modelItem => item.numberOfCase)*@
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.subject)
+
+                </td>
+  
+                <td>
+                    @Html.Label(item.dateofElkaeed.ToShortDateString())
+
+                </td>
+      
+         
+                <td>
+
+                    @foreach (var items in Model.clientX.Where(h => h.ID == item.clientID))
+                    {
+                        @Html.DisplayFor(modelItem => items.Name)
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.numberOfFile)
+
+                </td>
+                <td>
+                    @Html.Label(item.numberOfCase.ToString())
+
+
+
+                </td>
+                <td class="w-25">
+                    <a href="@Url.Action("Edit","cases", new { id = item.id })" class="btn m-1"><i class="fas fa-user-edit"></i>    تعديل</a>
+
+                    <a href="@Url.Action("Details","cases", new { id = item.id })" class="btn m-1"><i class="fas fa-info-circle"></i>    تفاصيل</a>
+
+                    <a href="@Url.Action("Delete","cases", new { id = item.id })" class="btn m-1" ><i class="fas fa-trash-alt"></i>    حذف</a>
+
+                    <a href="@Url.Action("NewGalsa","cases", new { id = item.id })" class="btn  m-1"><i class="fas fa-folder-plus"></i>    أضافه جلسه</a>
+
+                    <a href="@Url.Action("moneydetalis","cases", new { id = item.id })" class="btn  m-1"><i class="fas fa-dollar-sign"></i>    أتعاب القضيه</a>
+
+                    <a href="@Url.Action("ViewAttachment","cases", new { id = item.id })" class="btn m-1" ><i class="fas fa-folder-open"></i>    مستندات القضيه</a>
+
+                </td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+  </div>
+    <script>
+
+        $(document).ready(function () {
+
+
+            $('#myTable').DataTable();
+
+        });
+
+    </script>
+
+    <br />
+    <a href="@Url.Action("index","home")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>
+
+
+
+    <script>
+
+        $(function () {
+
+             var EditeMssage = '@TempData["CaseEdit"]'
+            var DeleteMessage = '@TempData["CaseDelete"]'
+           var AddMessage = '@TempData["Addgalsa"]'
+
+
+          if (AddMessage != '') {
+
+              alertify.success(AddMessage);
+            }
+           else if (EditeMssage != '') {
+
+                alertify.success(EditeMssage);
+            }
+
+
+
+            else if (DeleteMessage != '') {
+
+                 alertify.success(DeleteMessage);
+                 alertify.confirm("تم الحذف بنجاح..");
+            }
+
+        })
+
+
+    </script>
+
+

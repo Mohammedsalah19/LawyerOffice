@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "الاحصائيات";
+}
+
+<style>
+
+    td {
+        text-align: center;
+    }
+
+    th {
+        text-align: center;
+    }
+
+
+    body {
+        font-family: 'Cairo';
+    }
+
+    thead {
+        background-color: orange;
+    }
+
+    .ss {
+        background-color: orange;
+    }
+</style>
+<center>
+    <h4>الاحصائيات</h4>
+</center>
+<div class="container" style="direction:rtl">
+
+    <div class="row">
+        <div class="col-md-3   p-2 my-2" >
+            <div class="bg-primary rounded text-light"  style="height:140px;">
+
+
+                <a href="@Url.Action("employeeAcconts","statistics")" class="btn btn-default text-light" style="height:100%; width:100%; font-size:1.7em"><i class="fas fa-money-check-alt fa-3x"></i><br /> دفع رواتب</a>
+
+
+
+            </div>
+        </div>
+            <div class="col-md-3   p-2 my-2"  >
+                <div class="bg-primary rounded text-light"  style="height:140px;">
+
+                    <a href="@Url.Action("TotalPayments","statistics")" class="btn btn-default text-light" style="height:100%; width:100%; font-size:1.5em ;"><i class="fas fa-wallet fa-3x"></i><br /> اجمالى المدفوعات</a>
+
+
+                </div>
+            </div>
+                <div class="col-md-3   p-2 my-2"  >
+                    <div class="bg-primary rounded text-light"  style="height:140px;">
+
+                        <a href="@Url.Action("expenses","statistics")" class="btn btn-default text-light" style="height:100%; width:100%; font-size:1.5em ;"><i class="fas fa-hand-holding-usd fa-3x"></i><br /> المصروفات </a>
+
+
+                    </div>
+                    </div>
+                </div>
+</div class="container">
+<br />
+
+<a href="@Url.Action("index","home")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>

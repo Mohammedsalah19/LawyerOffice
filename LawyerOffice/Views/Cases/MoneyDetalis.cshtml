@@ -1,0 +1,135 @@
+﻿@model IEnumerable<LawyerOffice.Models.fees>
+
+@{
+    ViewBag.Title = "تفاصيل الاتعاب";
+}
+
+<style>
+
+    td {
+        text-align: center;
+    }
+
+    th {
+        text-align: center;
+    }
+
+
+    body {
+        font-family: 'Cairo', sans-serif;
+    }
+
+    thead {
+        background-color: orange;
+    }
+</style>
+
+<center>
+    <h2>تفاصيل الاتعاب </h2>
+
+    <h3>
+        @{
+            if (@ViewBag.remain == 0)
+            {
+                <a href="@Url.Action("index","home")" class="btn btn-default" disabled><i class="fas fa-folder-plus"></i> دفعه جديده</a>
+
+            }
+
+            else
+            {
+                <a href="@Url.Action("NewMoney", "cases", new { id = ViewBag.id })" class="btn btn-default"><i class="fas fa-folder-plus"></i> دفعه جديده</a>
+
+            }
+        }
+        @*@Html.ActionLink("دفعه جديده", "NewMoney", new { id = ViewBag.id })*@
+
+    </h3>
+</center>
+<br />
+
+<center>
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-hover table-striped">
+            <thead class="table-heading bg-primary">
+
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.notes)
+
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.EmployeeName)
+
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateofRevice)
+                    </th>
+                    <th>
+
+                        @Html.DisplayNameFor(model => model.recived)
+
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NumberOfCase)
+
+
+
+                    </th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.notes)
+
+                        @*@Html.DisplayFor(modelItem => item.NumberOfCase)*@
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmployeeName)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateofRevice)
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.recived)
+
+                    </td>
+
+
+                    <td>
+
+                        @ViewBag.NumOfCase
+
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+    </div>
+</center>
+
+
+<hr />
+<hr />
+<center>
+    <h4>اتعاب القضيه : @ViewBag.Total  </h4>
+    <h4>اجمالى المدفوع : @ViewBag.ReciverSum </h4>
+    -----------------------
+    <h3> باقى : @ViewBag.remain</h3>
+    <br />
+    <a href="@Url.Action("printreceipt","cases", new { id = ViewBag.id })" class="btn btn-default"><i class="fas fa-print"></i> طباعه ايصال</a>
+
+
+
+</center>
+
+
+<a href="@Url.Action("index","cases")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>

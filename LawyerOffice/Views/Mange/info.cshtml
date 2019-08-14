@@ -1,0 +1,186 @@
+﻿@model IEnumerable<LawyerOffice.Models.Info>
+
+@{
+    /**/
+
+    ViewBag.Title = "معلومات المكان";
+}
+
+
+<style>
+
+    td {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    th {
+        text-align: center;
+        color: white;
+    }
+
+
+    body {
+        font-family: 'Cairo', sans-serif;
+        font-size: 14px;
+    }
+
+    thead {
+        background-color: orange;
+    }
+</style>
+<center>
+    <h4>معلومات المكان</h4>
+</center>
+<br />
+@using (Html.BeginForm("info", "Mange", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+
+
+    <div style="align-content:center" class="">
+
+        <table>
+            <tr>
+                <td>
+                    اسم المكان
+                </td>
+                <td>
+                    الوصف
+                </td>
+                <td>
+                    رقم التليفون
+                </td>
+                <td>
+                    الصوره
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input id="PlaceName" name="PlaceName" class="form-control text-right  text-box single-line" type="text" style="width:170px ; height:32px" />
+
+                        </div>
+                    </div>
+
+                </td>
+
+
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input id="description" name="description" class="form-control text-right  text-box single-line" type="text" style="width:170px ; height:32px" />
+
+                        </div>
+                    </div>
+
+                </td>
+
+
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input id="Number" name="Number" class="form-control text-right  text-box single-line" type="text" style="width:170px ; height:32px" />
+
+                        </div>
+                    </div>
+
+                </td>
+
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="file" name="ImgFile" required />
+
+                        </div>
+                    </div>
+
+                </td>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button class="btn btn-default" value="Search" style=" width:170px; background-color:#428bca;">اضافه</button>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+        </table>
+
+    </div>
+
+
+}
+
+
+<br />
+<div class="table-responsive">
+
+    <table class="table table-bordered table-hover table-striped">
+
+        <tr class="table-heading bg-primary">
+            <th>
+                @Html.DisplayNameFor(model => model.PlaceName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Img)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlaceName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number)
+                </td>
+                <td>
+                    <img src="~/@Url.Content(item.Img)" width="100px" height="100px" />
+                </td>
+                <td>
+                    @*<a href="@Url.Action("EditInfo","Mange", new { id = item.id })" class="btn"><i class="fas fa-user-edit"></i>    تعديل</a>*@
+                    <a href="@Url.Action("DeleteInfo","Mange", new { id = item.id })" class="btn"><i class="fas fa-trash-alt"></i>    حذف</a>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<br />
+<a href="@Url.Action("uptop","mange")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>
+
+
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+
+
+<script>
+
+        $(function () {
+            var DeleteMessage = '@TempData["InfoDelete"]'
+
+             if (DeleteMessage != '') {
+
+                 alertify.success(DeleteMessage);
+                 alertify.confirm("تم الحذف بنجاح..");
+            }
+
+        })
+
+
+</script>

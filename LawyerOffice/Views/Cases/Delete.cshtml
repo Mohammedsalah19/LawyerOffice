@@ -1,0 +1,120 @@
+﻿@model LawyerOffice.Models.Cases
+
+@{
+    ViewBag.Title = "حذف قضيه";
+}
+
+
+<h3>متأكد من الحذف؟</h3>
+<div class="text-right" style="direction:rtl">
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.numberOfCase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numberOfCase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numberOfFile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numberOfFile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddressofClient)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddressofClient)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberoOfTawkeel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberoOfTawkeel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeoOfTawkeel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeoOfTawkeel)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateofElkaeed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateofElkaeed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nameofGuillty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nameofGuillty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddressoFGuility)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddressoFGuility)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Eldarea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Eldarea)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subject)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.clientID)
+        </dt>*@
+
+        @*<dd>
+                @Html.DisplayFor(model => model.clientID)
+            </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+        <div class="form-actions no-color">
+
+             <input type="submit" value="حذف" class="btn btn-default" /> 
+        </div>
+    }
+</div>
+<br />
+<a href="@Url.Action("index","cases")" class="btn btn-default"  ><i class="fas fa-backward"></i> الرجوع</a>
+
+ 

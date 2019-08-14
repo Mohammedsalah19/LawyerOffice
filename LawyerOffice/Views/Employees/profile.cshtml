@@ -1,0 +1,51 @@
+﻿@model LawyerOffice.Models.EmpOfficeJob
+
+@{
+    ViewBag.Title = "الصفحه الشخصيه";
+}
+
+ <div class="table-responsive">
+
+
+                <div class="card text-center" >
+                    <div class="card-header">
+                     المعلومات الشخصيه
+
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            اسم الموظف  :          @Model.EmpY.employeeName
+                        </h5>
+
+                        <p class="card-text">
+                            عنوان الموظف :  @Model.EmpY.Address
+                        </p>
+
+                        <p class="card-text">
+                            رقم التليفون :  @Model.EmpY.phone
+                        </p>
+
+                        <p class="card-text">
+                            الوظيفه : @Model.JobX.Where(h => h.id.ToString() == Model.EmpY.jobs).Select(p=>p.jobs).FirstOrDefault()
+                        </p>
+
+                        <p class="card-text">
+                            المكتب : @Model.OfficeX.Where(h => h.Id.ToString() == Model.EmpY.OfficeName).Select(p => p.OfficeName).FirstOrDefault()
+                        </p>
+
+                        <p class="card-text">
+                            المرتب : @Model.EmpY.Salary
+                        </p>
+
+                        <p class="card-text">
+                            كلمة المرور         : @Model.EmpY.Paswword
+                        </p>
+                    </div>
+                  
+                </div>
+ 
+    </table>
+</div>
+<p>
+    <a href="@Url.Action("index","Home")" class="btn btn-default"><i class="fas fa-backward"></i> الرجوع</a>
+</p>
